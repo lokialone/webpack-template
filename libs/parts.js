@@ -1,5 +1,6 @@
 const webpack = require('webpack');
-
+const CleanWebpackPlugin  = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 exports.devServer = function(options) {
 	return {
 
@@ -36,12 +37,30 @@ exports.setupCSS = function(paths) {
 		module: {
 			loaders: [
 			{
-				test:/\.css$/,
-				loaders:['style','css'],
-				include:paths
+				test: /\.css$/,
+				loaders: ['style','css'],
+				include: paths
 			}
 		  ]
 		}
+	}
+}
+
+exports.extractCSS = function(paths) {
+	return {
+		module: {
+			loaders: [
+				{
+					test: /\.css$/,
+					loader: ExtractTextPlugin.extract('style','css'),
+					include: paths
+				}
+
+
+			]
+		},
+		plugins: [
+		new ExtractTextPlugin('[name].[chunkhash].css')]
 	}
 }
 
@@ -87,6 +106,31 @@ exports.setFreeVariable = function(key,value) {
 	return {
 		plugins:[
 			new webpack.DefinePlugin(env)
+		]
+	}
+}
+
+// split files
+exports.extractBundle = function(options) {
+	const entry = {};
+	entry[options.name] = options.entries;
+
+	return {
+		entry: entry,
+		plugins: [
+			new webpack.optimize.CommonsChunkPlugin({
+				name: [options.name,'manifest']
+		})
+		]
+	}
+}
+
+exports.clean = function(path) {
+	return {
+		plugins: [
+			new CleanWebpackPlugin([path],{
+				root:process.cwd()
+			})
 		]
 	}
 }

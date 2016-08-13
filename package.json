@@ -10,7 +10,9 @@
   "author": "lokialone",
   "license": "ISC",
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.10",
     "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.22.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
@@ -19,7 +21,6 @@
     "webpack-validator": "^2.2.7"
   },
   "dependencies": {
-    "install": "^0.8.1",
     "react": "^15.3.0"
   }
 }

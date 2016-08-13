@@ -2,5 +2,9 @@ body {
 	background: cornsilk;
 }
 :local(.redButton) {
-  background: red;
+	background: red;
+}
+
+.redButton{
+	background: red;	
 }

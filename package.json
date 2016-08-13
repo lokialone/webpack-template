@@ -1,0 +1,25 @@
+{
+  "name": "demo1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "author": "lokialone",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "html-webpack-plugin": "^2.22.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-merge": "^0.14.1",
+    "webpack-validator": "^2.2.7"
+  },
+  "dependencies": {
+    "install": "^0.8.1",
+    "react": "^15.3.0"
+  }
+}

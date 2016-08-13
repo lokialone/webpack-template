@@ -57,12 +57,11 @@ exports.extractCSS = function(paths) {
 					loader: ExtractTextPlugin.extract('style','css'),
 					include: paths
 				}
-
-
 			]
 		},
 		plugins: [
-		new ExtractTextPlugin('[name].[chunkhash].css')]
+		new ExtractTextPlugin('[name].[chunkhash].css')
+		]
 	}
 }
 

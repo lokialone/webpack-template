@@ -46,7 +46,9 @@ switch(process.env.npm_lifecycle_event) {
 					   	name: 'vendor',
 					   	entries: ['react']
 					   }),
-					   parts.extractCSS(PATHS.style));
+					   parts.extractCSS(PATHS.style),
+					   parts.purifyCSS([PATHS.app])
+					);
 		break;
 	case 'start':
 		config = merge(common,

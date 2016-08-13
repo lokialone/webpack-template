@@ -48,6 +48,20 @@ exports.setupCSS = function(paths) {
 	}
 }
 
+exports.setupReact = function(paths) {
+	return{
+		module: {
+			test: /\.jsx?$/,
+			loader: 'babel',
+			query: {
+				cacheDirectory: true,
+				presets: ['react','es2015']
+			},
+			inline: paths
+		}
+	}
+}
+
 exports.extractCSS = function(paths) {
 	return {
 		module: {

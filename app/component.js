@@ -1,3 +1,5 @@
+require('./style/idnex.scss');
+require('./style/look.css');
 
 module.exports = function () {
 	var element = document.createElement('h1');

@@ -39,14 +39,26 @@ exports.setupCSS = function(paths) {
 		module: {
 			loaders: [
 			{
+				test: /\.scss$/,
+				loaders: ['style','css','sass'],
+				include: paths
+			},
+			{
 				test: /\.css$/,
 				loaders: ['style','css'],
+				include: paths
+			},
+			
+			{
+				test: /\.sass$/,
+				loaders: ['style','css','sass'],
 				include: paths
 			}
 		  ]
 		}
 	}
 }
+
 
 exports.setupReact = function(paths) {
 	return{

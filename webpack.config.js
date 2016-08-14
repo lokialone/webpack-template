@@ -7,14 +7,14 @@ const pkg = require('./package.json');
 
 const PATHS = {
 	app: path.join(__dirname,'app'),
-	style: path.join(__dirname,'app','main.css'),
+	// style: path.join(__dirname,'app','style','look.css'),
 	build: path.join(__dirname,'build')
 };
 
 const common = {
 	entry: {
 		app: PATHS.app,
-		style: PATHS.style,
+		// style: PATHS.style,
 		vendor: Object.keys(pkg.dependencies)
 	},
 	output: {
@@ -46,13 +46,14 @@ switch(process.env.npm_lifecycle_event) {
 					   	name: 'vendor',
 					   	entries: ['react']
 					   }),
-					   parts.extractCSS(PATHS.style),
+					   // parts.extractCSS(PATHS.style),
+					   parts.setupCSS(PATHS.app),
 					   parts.purifyCSS([PATHS.app])
 					);
 		break;
 	case 'start':
 		config = merge(common,
-						parts.setupCSS(PATHS.style),
+						parts.setupCSS(PATHS.app),
 						{
 						    devtool: 'eval-source-map'
 						},

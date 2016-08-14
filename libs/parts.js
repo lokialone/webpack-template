@@ -3,6 +3,7 @@ const CleanWebpackPlugin  = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCssPlugin = require('purifycss-webpack-plugin');
 
+
 exports.devServer = function(options) {
 	return {
 
@@ -91,6 +92,24 @@ exports.extractCSS = function(paths) {
 	}
 }
 
+exports.extractSass = function(paths) {
+	return {
+		module: {
+			loaders: [
+				{
+					test: /\.scss$/,
+					loader: ExtractTextPlugin.extract('style', 'css!sass'),
+					include: paths
+				}
+			]
+		},
+		plugins: [
+		// Output extracted CSS to a file
+			new ExtractTextPlugin('[name].[chunkhash].css')
+		]
+	}
+}
+
 exports.purifyCSS = function(paths) {
 	return {
 		plugins: [
@@ -160,6 +179,23 @@ exports.extractBundle = function(options) {
 				name: [options.name,'manifest']
 		})
 		]
+	}
+}
+
+exports.uglifyImage = function(paths) {
+	return {
+		module: {
+			loaders: [
+				{
+				    test: /.*\.(gif|png|jpe?g|svg)$/i,
+				    loaders: [
+				      'file?hash=sha512&digest=hex&name=[hash].[ext]',
+				      'image-webpack'
+				    ],
+				    include: paths
+			  	}
+			]
+		}
 	}
 }
 

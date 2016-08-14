@@ -7,14 +7,18 @@ const pkg = require('./package.json');
 
 const PATHS = {
 	app: path.join(__dirname,'app'),
-	// style: path.join(__dirname,'app','style','look.css'),
+	style: [
+			path.join(__dirname,'app/style','look.css'),
+			path.join(__dirname,'app','idnex.scss')
+	],
 	build: path.join(__dirname,'build')
 };
 
 const common = {
 	entry: {
 		app: PATHS.app,
-		// style: PATHS.style,
+		style: PATHS.style,
+		images: PATHS.images,
 		vendor: Object.keys(pkg.dependencies)
 	},
 	output: {
@@ -46,8 +50,8 @@ switch(process.env.npm_lifecycle_event) {
 					   	name: 'vendor',
 					   	entries: ['react']
 					   }),
-					   // parts.extractCSS(PATHS.style),
-					   parts.setupCSS(PATHS.app),
+					   parts.extractCSS(PATHS.style),
+					   parts.extractSass(PATHS.style),
 					   parts.purifyCSS([PATHS.app])
 					);
 		break;
